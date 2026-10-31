@@ -18,10 +18,15 @@ class BankAccount:
 
     def deposit(self, amount):
         self.balance += amount
-        return self.balance
+        con = connection.cursor()
+        con.execute(
+            "UPDATE accaunt SET balance = %s WHERE owner = %s",
+            (self.balance, self.name)
+        )
+        connection.commit()
+        con.close()
 
 
-name = input("Enter your name: ")
-balance = int(input("Enter your balance: "))
-user = BankAccount(name, balance)
-user.create_account()
+
+user = BankAccount("Djordje", 1500)
+user.deposit(500)
