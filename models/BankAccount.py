@@ -35,8 +35,17 @@ class BankAccount:
         )
         connection.commit()
         con.close()
+    def acc_info(self):
+        con = connection.cursor()
+        con.execute(
+            "SELECT owner, balance FROM accaunt"
+        )
+        row = con.fetchall()
+        for r in row:
+            print(r)
+
+
 
 
 user = BankAccount("Djordje", 1500)
-user.deposit(500)
-user.withdraw(300)
+user.acc_info()
