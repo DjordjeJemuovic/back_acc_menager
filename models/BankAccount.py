@@ -26,7 +26,17 @@ class BankAccount:
         connection.commit()
         con.close()
 
+    def withdraw(self, amount):
+        self.balance -= amount
+        con = connection.cursor()
+        con.execute(
+            "UPDATE accaunt SET balance = %s WHERE owner = %s",
+            (self.balance, self.name)
+        )
+        connection.commit()
+        con.close()
 
 
 user = BankAccount("Djordje", 1500)
 user.deposit(500)
+user.withdraw(300)
