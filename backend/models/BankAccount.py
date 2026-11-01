@@ -40,9 +40,9 @@ class BankAccount:
         con.execute(
             "SELECT owner, balance FROM accaunt"
         )
-        row = con.fetchall()
-        for r in row:
-            print(r)
+        row = con.fetchone()
+        print(row)
+
 
 
 
