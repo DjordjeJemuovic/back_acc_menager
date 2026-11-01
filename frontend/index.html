@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bank Account Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">Bank Account Manager</div>
+      <nav class="nav">
+        <a href="#overview" class="nav-overview">Overview</a>
+        <a href="#accounts" class="nav-accounts">Accounts</a>
+        <a href="#transactions" class="nav-transactions">Transactions</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+
+      <!-- ========== OVERVIEW ========== -->
+      <section id="overview" class="page">
+        <h1>Overview</h1>
+
+        <form class="card">
+          <h2>Find a customer</h2>
+          <div class="row">
+            <label class="field">Full name
+              <input type="text" name="first_name">
+            </label>
+            <button type="submit" class="btn">Show account</button>
+          </div>
+        </form>
+
+        <!-- Result (shown after a customer is found) -->
+        <div class="summary">
+          <div class="summary-name">Ana Petrović <span>· ACC-1001</span></div>
+          <div class="summary-label">Current balance</div>
+          <div class="summary-balance">$4,820.50</div>
+        </div>
+
+        <h3 class="section-title">Transaction history</h3>
+        <div class="list">
+          <div class="list-row">
+            <div>
+              <div class="list-title">Deposit</div>
+              <div class="list-sub">Oct 28</div>
+            </div>
+            <div class="amount plus">+ $120.50</div>
+          </div>
+          <div class="list-row">
+            <div>
+              <div class="list-title">Withdrawal</div>
+              <div class="list-sub">Oct 20</div>
+            </div>
+            <div class="amount">− $300.00</div>
+          </div>
+          <div class="list-row">
+            <div>
+              <div class="list-title">Deposit</div>
+              <div class="list-sub">Oct 12</div>
+            </div>
+            <div class="amount plus">+ $5,000.00</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== ACCOUNTS ========== -->
+      <section id="accounts" class="page">
+        <div class="page-head">
+          <div>
+            <h1>Accounts</h1>
+            <p class="muted">4 accounts</p>
+          </div>
+          <button type="button" class="btn">New account</button>
+        </div>
+
+        <div class="list">
+          <div class="list-row">
+            <div>
+              <div class="list-title">Ana Petrović</div>
+              <div class="list-sub">ACC-1001</div>
+            </div>
+            <div class="amount">$4,820.50</div>
+          </div>
+          <div class="list-row">
+            <div>
+              <div class="list-title">Marko Jovanović</div>
+              <div class="list-sub">ACC-1002</div>
+            </div>
+            <div class="amount">$12,300.00</div>
+          </div>
+          <div class="list-row">
+            <div>
+              <div class="list-title">Jelena Nikolić</div>
+              <div class="list-sub">ACC-1003</div>
+            </div>
+            <div class="amount">$975.25</div>
+          </div>
+          <div class="list-row">
+            <div>
+              <div class="list-title">Stefan Ilić</div>
+              <div class="list-sub">ACC-1004</div>
+            </div>
+            <div class="amount">$20.00</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TRANSACTIONS ========== -->
+      <section id="transactions" class="page">
+        <h1>Transactions</h1>
+
+        <form class="card card-narrow">
+          <div class="toggle">
+            <input type="radio" name="type" id="type-deposit" value="deposit" checked>
+            <label for="type-deposit">Deposit</label>
+            <input type="radio" name="type" id="type-withdraw" value="withdraw">
+            <label for="type-withdraw">Withdraw</label>
+          </div>
+
+          <label class="field">Account
+            <select name="account">
+              <option value="">Select account</option>
+              <option value="1">Ana Petrović · ACC-1001</option>
+              <option value="2">Marko Jovanović · ACC-1002</option>
+              <option value="3">Jelena Nikolić · ACC-1003</option>
+              <option value="4">Stefan Ilić · ACC-1004</option>
+            </select>
+          </label>
+
+          <label class="field">Amount
+            <input type="text" name="amount" inputmode="decimal" placeholder="0.00">
+          </label>
+
+          <button type="submit" class="btn">Confirm</button>
+        </form>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
