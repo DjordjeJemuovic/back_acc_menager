@@ -26,21 +26,32 @@ class Amount(BaseModel):
 
 
 def get_or_404(name):
+    print("TRAZIM ACCOUNT:", name)
     account = BankAccount.find(name)
     if account is None:
         raise HTTPException(404, "Račun ne postoji.")
     return account
 
 
+
 @app.get("/api/accounts")
 def list_accounts():
-    return [{"owner": owner, "balance": balance} for owner, balance in BankAccount.show_all()]
-
+    return [
+        {
+            "owner": account.name,
+            "balance": account.balance
+        }
+        for account in BankAccount.show_all()
+    ]
 
 @app.get("/api/accounts/{name}")
 def account_info(name: str):
     account = get_or_404(name)
-    return {"owner": account.name, "balance": account.balance}
+
+    return {
+        "owner": account.name,
+        "balance": account.balance
+    }
 
 
 @app.post("/api/accounts")

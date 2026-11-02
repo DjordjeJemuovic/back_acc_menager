@@ -1,3 +1,6 @@
+from gettext import find
+
+
 from models.db import connection
 
 
@@ -9,7 +12,7 @@ class BankAccount:
     def create_account(self):
         cur = connection.cursor()
         cur.execute(
-            "INSERT INTO accaunt (owner, balance) VALUES (%s, %s)",
+            "INSERT INTO account (owner, balance) VALUES (%s, %s)",
             (self.name, self.balance)
         )
         connection.commit()
@@ -19,20 +22,27 @@ class BankAccount:
     def find(name):
         """Vraća BankAccount iz baze, ili None ako ne postoji."""
         cur = connection.cursor()
-        cur.execute("SELECT owner, balance FROM accaunt WHERE owner = %s", (name,))
+        cur.execute("SELECT owner, balance FROM account WHERE owner = %s", (name,))
         row = cur.fetchone()
         cur.close()
         if row is None:
             return None
-        return row
+        return BankAccount(row["owner"], row["balance"])
 
     @staticmethod
     def show_all():
         cur = connection.cursor()
-        cur.execute("SELECT owner, balance FROM accaunt")
+        cur.execute("SELECT owner, balance FROM account")
         rows = cur.fetchall()
         cur.close()
-        return rows
+
+        profiles = []
+
+        for row in rows:
+            account = BankAccount(row["owner"], row["balance"])
+            profiles.append(account)
+
+        return profiles
 
     def deposit(self, amount):
         if amount <= 0:
@@ -51,8 +61,9 @@ class BankAccount:
     def _save(self):
         cur = connection.cursor()
         cur.execute(
-            "UPDATE accaunt SET balance = %s WHERE owner = %s",
+            "UPDATE account SET balance = %s WHERE owner = %s",
             (self.balance, self.name)
         )
         connection.commit()
         cur.close()
+
