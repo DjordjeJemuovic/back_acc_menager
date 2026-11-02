@@ -216,3 +216,8 @@ select:focus {
   .main { padding: 24px 16px; }
   .summary-balance { font-size: 36px; }
 }
+
+[hidden] { display: none !important; }
+.message { min-height: 1.2em; margin: 8px 0 0; font-size: 14px; }
+.message.error { color: #c0392b; }
+.message.success { color: #1e8e3e; }

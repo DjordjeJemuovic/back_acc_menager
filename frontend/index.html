@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <div class="layout">
 
     <!-- Sidebar -->
@@ -27,46 +28,22 @@
       <section id="overview" class="page">
         <h1>Overview</h1>
 
-        <form class="card">
+        <form class="card" id="find-form">
           <h2>Find a customer</h2>
           <div class="row">
             <label class="field">Full name
-              <input type="text" name="first_name">
+              <input type="text" id="find-name" name="first_name">
             </label>
             <button type="submit" class="btn">Show account</button>
           </div>
+          <p class="message" id="find-message"></p>
         </form>
 
         <!-- Result (shown after a customer is found) -->
-        <div class="summary">
-          <div class="summary-name">Ana Petrović <span>· ACC-1001</span></div>
+        <div class="summary" id="summary" hidden>
+          <div class="summary-name" id="summary-name"></div>
           <div class="summary-label">Current balance</div>
-          <div class="summary-balance">$4,820.50</div>
-        </div>
-
-        <h3 class="section-title">Transaction history</h3>
-        <div class="list">
-          <div class="list-row">
-            <div>
-              <div class="list-title">Deposit</div>
-              <div class="list-sub">Oct 28</div>
-            </div>
-            <div class="amount plus">+ $120.50</div>
-          </div>
-          <div class="list-row">
-            <div>
-              <div class="list-title">Withdrawal</div>
-              <div class="list-sub">Oct 20</div>
-            </div>
-            <div class="amount">− $300.00</div>
-          </div>
-          <div class="list-row">
-            <div>
-              <div class="list-title">Deposit</div>
-              <div class="list-sub">Oct 12</div>
-            </div>
-            <div class="amount plus">+ $5,000.00</div>
-          </div>
+          <div class="summary-balance" id="summary-balance"></div>
         </div>
       </section>
 
@@ -75,48 +52,31 @@
         <div class="page-head">
           <div>
             <h1>Accounts</h1>
-            <p class="muted">4 accounts</p>
+            <p class="muted" id="accounts-count"></p>
           </div>
-          <button type="button" class="btn">New account</button>
+          <button type="button" class="btn" id="new-account-btn">New account</button>
         </div>
 
-        <div class="list">
-          <div class="list-row">
-            <div>
-              <div class="list-title">Ana Petrović</div>
-              <div class="list-sub">ACC-1001</div>
-            </div>
-            <div class="amount">$4,820.50</div>
-          </div>
-          <div class="list-row">
-            <div>
-              <div class="list-title">Marko Jovanović</div>
-              <div class="list-sub">ACC-1002</div>
-            </div>
-            <div class="amount">$12,300.00</div>
-          </div>
-          <div class="list-row">
-            <div>
-              <div class="list-title">Jelena Nikolić</div>
-              <div class="list-sub">ACC-1003</div>
-            </div>
-            <div class="amount">$975.25</div>
-          </div>
-          <div class="list-row">
-            <div>
-              <div class="list-title">Stefan Ilić</div>
-              <div class="list-sub">ACC-1004</div>
-            </div>
-            <div class="amount">$20.00</div>
-          </div>
-        </div>
+        <form class="card card-narrow" id="new-account-form" hidden>
+          <label class="field">Full name
+            <input type="text" id="new-name">
+          </label>
+          <label class="field">Initial balance (optional)
+            <input type="text" id="new-balance" inputmode="decimal" placeholder="0.00">
+          </label>
+          <button type="submit" class="btn">Create account</button>
+          <p class="message" id="new-account-message"></p>
+        </form>
+
+        <p class="message" id="accounts-message"></p>
+        <div class="list" id="accounts-list"></div>
       </section>
 
       <!-- ========== TRANSACTIONS ========== -->
       <section id="transactions" class="page">
         <h1>Transactions</h1>
 
-        <form class="card card-narrow">
+        <form class="card card-narrow" id="transaction-form">
           <div class="toggle">
             <input type="radio" name="type" id="type-deposit" value="deposit" checked>
             <label for="type-deposit">Deposit</label>
@@ -125,24 +85,23 @@
           </div>
 
           <label class="field">Account
-            <select name="account">
+            <select id="account-select" name="account">
               <option value="">Select account</option>
-              <option value="1">Ana Petrović · ACC-1001</option>
-              <option value="2">Marko Jovanović · ACC-1002</option>
-              <option value="3">Jelena Nikolić · ACC-1003</option>
-              <option value="4">Stefan Ilić · ACC-1004</option>
             </select>
           </label>
 
           <label class="field">Amount
-            <input type="text" name="amount" inputmode="decimal" placeholder="0.00">
+            <input type="text" id="amount" name="amount" inputmode="decimal" placeholder="0.00">
           </label>
 
           <button type="submit" class="btn">Confirm</button>
+          <p class="message" id="tx-message"></p>
         </form>
       </section>
 
     </main>
   </div>
+
+  <script type="module" src="js/main.js"></script>
 </body>
-</html>
+</html> 

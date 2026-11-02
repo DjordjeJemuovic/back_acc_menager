@@ -1,3 +1,4 @@
+from pymysql import connect
 import pymysql
 
 connection = pymysql.connect(
